@@ -6,7 +6,7 @@
  * 
  * Donate TRTLuzAzNs1E1RBFhteX56A5353vyHuSJ5AYYQfoN97PNbcMDvwQo4pUWHs7SYpuD9ThvA7AD3r742kwTmWh5o9WFaB9JXH8evP
  * 
- * Reality is construcuted by the consensus between your neurons.
+ * Reality is the concensus constructed between your neurons.
  */
 class Turtlecoin_Library {
     protected $url = null, $is_debug = false, $parameters_structure = 'array';
@@ -33,7 +33,6 @@ class Turtlecoin_Library {
     public function __construct($pHost, $pPort) {
         $this->validate(false === extension_loaded('curl'), 'The curl extension must be loaded to use this class!');
         $this->validate(false === extension_loaded('json'), 'The json extension must be loaded to use this class!');
-        
         $this->host = $pHost;
         $this->port = $pPort;
         $this->url = $pHost . ':' . $pPort . '/json_rpc';
@@ -71,21 +70,22 @@ class Turtlecoin_Library {
 
         $request = json_encode(array('jsonrpc' => '2.0', 'method' => $pMethod, 'params' => $pParams, 'id' => $requestId));
         $responseMessage = $this->getResponse($request);
-        
+
         //If debug is enabled
         $this->debug('Url: ' . $this->url . "\r\n", false);
         $this->debug('Request: <br> <br> ' . $request . "\r\n", false);
         $this->debug(' <br>Response: <br> <br> ' . $responseMessage . "\r\n", true);
 
         $responseDecoded = json_decode($responseMessage, true);
-        
+	
+	//Validate reponse
         $this->validate(empty($responseDecoded['id']), 'Invalid response data structure: ' . $responseMessage);
         $this->validate($responseDecoded['id'] != $requestId, 'Request id: ' . $requestId . ' is different from Response id: ' . $responseDecoded['id']);
-        
+
         if(isset($responseDecoded['error'])) {
             $errorMessage = 'Request have return error: ' . $responseDecoded['error']['message'] . '; ' . "\n" . 'Request: ' . $request . '; ';
-            
-            if (isset($responseDecoded['error']['data'])) {
+
+          if (isset($responseDecoded['error']['data'])) {
                 $errorMessage .= "\n" . 'Error data: ' . $responseDecoded['error']['data'];
             }
 
@@ -163,7 +163,7 @@ class Turtlecoin_Library {
         return $status['lastBlockHash'];
     }
 
-    public function getPayments($lastBlockHash, $paymentId) {
+x    public function getPayments($lastBlockHash, $paymentId) {
         $payment_param = array('blockCount' => 100, 'blockHash' => $lastBlockHash, 'paymentId' => $paymentId);
         $get_payments = $this->_run('getTransactions', $payment_param);
         return $get_payments;
