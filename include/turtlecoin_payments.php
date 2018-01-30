@@ -218,9 +218,9 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
         
         if($this->discount) {
             $sanatized_discount = preg_replace('/[^0-9]/', '', $this->discount);
-            $price = $amount_TRTL2." TURTL (".$sanatized_discount."% discount for using TRTL!)"; 
+            $price = $amount_TRTL2." TRTL (".$sanatized_discount."% discount for using TRTL!)"; 
         } else {
-            $price = $amount_TRTL2." TURTL";
+            $price = $amount_TRTL2." TRTL";
         }
 
         echo "
