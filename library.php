@@ -163,7 +163,7 @@ class Turtlecoin_Library {
         return $status['lastBlockHash'];
     }
 
-x    public function getPayments($lastBlockHash, $paymentId) {
+    public function getPayments($lastBlockHash, $paymentId) {
         $payment_param = array('blockCount' => 100, 'blockHash' => $lastBlockHash, 'paymentId' => $paymentId);
         $get_payments = $this->_run('getTransactions', $payment_param);
         return $get_payments;
