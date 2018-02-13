@@ -154,12 +154,12 @@ class Turtlecoin_Library {
     //https://wiki.bytecoin.org/wiki/Bytecoin_RPC_Wallet_JSON_RPC_API
 
     public function getBalance() {
-        $balance = $this->_run('getBalance');
+        $balance = $this->_run('getBalance', null);
         return $balance;
     }
 
     public function getStatus() {
-        $status = $this->_run('getStatus');
+        $status = $this->_run('getStatus', null);
         return $status['lastBlockHash'];
     }
 
