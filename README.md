@@ -43,10 +43,9 @@ Once you've installed and activated WooCommerce, you may install and activate th
 2. Delete the plugin through the 'Plugins' menu in WordPress.
 
 == Screenshots == 
-1. TurtleCoin Checkout Gateway
-![gateway](https://github.com/turtlecoin/woo-turtle/blob/master/assets/screenshots/gateway.png "TurtleCoin Checkout Gateway")
-2. TurtleCoin Options
-![options](https://github.com/turtlecoin/woo-turtle/blob/master/assets/screenshots/options.png "TurtleCoin Options")
+1. TurtleCoin Checkout Gateway  ![gateway](https://github.com/turtlecoin/woo-turtle/blob/master/assets/screenshots/gateway.png "TurtleCoin Checkout Gateway")
+  
+2. TurtleCoin Options  ![options](https://github.com/turtlecoin/woo-turtle/blob/master/assets/screenshots/options.png "TurtleCoin Options")
 
 == Changelog ==
 
