@@ -1,4 +1,4 @@
-=== TurtleCoin WooCommerce Extension ===
+# TurtleCoin WooCommerce Extension
 
 Contributors: Fexra
 
@@ -18,7 +18,7 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
  
 TurtleCoin WooCommerce Extension is a WordPress plugin that allows merchants to accept TRTL Shells as payments at WooCommerce-powered online stores.
 
-== Description ==
+## Description
 
 Your online store must use the WooCommerce platform (a free WordPress plugin).
 Once you've installed and activated WooCommerce, you may install and activate the TurtleCoin WooCommerce Extension.
@@ -30,32 +30,35 @@ Once you've installed and activated WooCommerce, you may install and activate th
 * Add a TurtleCoin payments option to your existing online store with alternative main currency.
 * Automatic conversion to TurtleCoin via realtime exchange rate feed and calculation.
 
-== Installation ==
+## Installation
 
 1. Install the "TurtleCoin WooCommerce Gateway" ZIP file in WordPress just like any other plugin.
 2. Activate the plugin.
 3. Configure it with your wallet RPC address, (username or password not requested), and your TurtleCoin address.
 4. Profit.
 
-== Remove Plugin ==
+## Remove Plugin
 
 1. Deactivate the plugin through the 'Plugins' menu in WordPress.
 2. Delete the plugin through the 'Plugins' menu in WordPress.
 
-== Screenshots == 
-1. TurtleCoin Checkout Gateway  ![gateway](https://github.com/turtlecoin/woo-turtle/blob/master/assets/screenshots/gateway.png "TurtleCoin Checkout Gateway")
-  
-2. TurtleCoin Options  ![options](https://github.com/turtlecoin/woo-turtle/blob/master/assets/screenshots/options.png "TurtleCoin Options")
+## Screenshots
 
-== Changelog ==
+### 1. TurtleCoin Checkout Gateway  
+![gateway](https://github.com/turtlecoin/woo-turtle/blob/master/assets/screenshots/gateway.png "TurtleCoin Checkout Gateway")
+  
+### 2. TurtleCoin Options  
+![options](https://github.com/turtlecoin/woo-turtle/blob/master/assets/screenshots/options.png "TurtleCoin Options")
+
+## Changelog
 
 = 0.1 =
 * Release!
 
-== Upgrade Notice ==
+## Upgrade Notice
 
 soon
 
-== Frequently Asked Questions ==
+## Frequently Asked Questions
 
 soon
