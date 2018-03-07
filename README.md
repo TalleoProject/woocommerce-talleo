@@ -44,9 +44,9 @@ Once you've installed and activated WooCommerce, you may install and activate th
 
 == Screenshots == 
 1. TurtleCoin Checkout Gateway
-![gateway](https://github.com/turtlecoin/woo-turtle/assets/screenshots/gateway.png "TurtleCoin Checkout Gateway")
+![gateway](https://github.com/turtlecoin/woo-turtle/blob/master/assets/screenshots/gateway.png "TurtleCoin Checkout Gateway")
 2. TurtleCoin Options
-![options](https://github.com/turtlecoin/woo-turtle/assets/screenshots/options.png "TurtleCoin Options")
+![options](https://github.com/turtlecoin/woo-turtle/blob/master/assets/screenshots/options.png "TurtleCoin Options")
 
 == Changelog ==
 
