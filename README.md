@@ -23,7 +23,7 @@ Once you've installed and activated WooCommerce, you may install and activate th
 * Add a TurtleCoin payments option to your existing online store with alternative main currency.
 * Automatic conversion to TurtleCoin via realtime exchange rate feed and calculation.
 
-##Dependencies##
+## Dependencies
 
 - WordPress. This can be downloaded from [wordpress.org](https://wordpress.org) or cloning their [github repo](https://github.com/WordPress/WordPress)
 - WooCommerce. This can be downloaded from [wordpress.org](https://wordpress.org/plugins/woocommerce/) or cloning their [github repo](https://github.com/woocommerce/woocommerce)
@@ -65,7 +65,16 @@ Once you've installed and activated WooCommerce, you may install and activate th
 
 ## Contributors
 
-- Fexra - TRTLuzAzNs1E1RBFhteX56A5353vyHuSJ5AYYQfoN97PNbcMDvwQo4pUWHs7SYpuD9ThvA7AD3r742kwTmWh5o9WFaB9JXH8evP
-- bwentzloff - 
-- derp-derp-derp - TRTLv3m5HxMBpoJDyNFwYB7P9L4hE5ve7NshZio2GuFqRn6SDFMcZX5QPEwexAib45YV6gFrnEpkABPT8nAdGoqD16Xtv8e2xx7
-- TheTimeWalker - TRTLv2xJc1bUhnXVRyEKmk6TWWwVcV4KHW9idE4GZz7vi2fKysEoFrrVLooxTHfNv9VCv7xyzQyDNjSuxhrEdK2fUdFRD2D3nQY
+- Fexra
+```
+TRTLuzAzNs1E1RBFhteX56A5353vyHuSJ5AYYQfoN97PNbcMDvwQo4pUWHs7SYpuD9ThvA7AD3r742kwTmWh5o9WFaB9JXH8evP
+```
+- bwentzloff
+- derp-derp-derp
+```
+TRTLv3m5HxMBpoJDyNFwYB7P9L4hE5ve7NshZio2GuFqRn6SDFMcZX5QPEwexAib45YV6gFrnEpkABPT8nAdGoqD16Xtv8e2xx7
+```
+- TheTimeWalker
+```
+TRTLv2xJc1bUhnXVRyEKmk6TWWwVcV4KHW9idE4GZz7vi2fKysEoFrrVLooxTHfNv9VCv7xyzQyDNjSuxhrEdK2fUdFRD2D3nQY
+```
