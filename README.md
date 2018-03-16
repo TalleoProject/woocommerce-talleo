@@ -1,10 +1,13 @@
 # TurtleCoin WooCommerce Extension
-Tags: turtlecoin, woocommerce, integration, payment, merchant, cryptocurrency, accept turtlecoin, turtlecoin woocommerce
+**Tags:** turtlecoin, woocommerce, integration, payment, merchant, cryptocurrency, accept turtlecoin, turtlecoin woocommerce
 
-Requires at least: 4.0
-Tested up to: 4.9.4
-License: GPLv3 or later
-License URI: http://www.gnu.org/licenses/gpl-3.0.html
+**Requires**: WordPress 4.x.x, WooCOmmerce 3.x.x
+
+**Tested**: WordPress 4.9.4, WooCommerce 3.3.3
+
+**Licence**: GPLv3 or later
+
+**License URI**: http://www.gnu.org/licenses/gpl-3.0.html
  
 TurtleCoin WooCommerce Extension is a WordPress plugin that allows merchants to accept TRTL Shells as payments at WooCommerce-powered online stores.
 
