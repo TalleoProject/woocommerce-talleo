@@ -29,6 +29,7 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
         $this->init_form_fields();
         $this->host = $this->get_option('daemon_host');
         $this->port = $this->get_option('daemon_port');
+        $this->password = $this->get_option('daemon_password');
         $this->address = $this->get_option('turtlecoin_address');
         $this->discount = $this->get_option('discount');
         $this->delete_history = $this->get_option('history');        
@@ -48,7 +49,8 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
             add_filter('woocommerce_currency_symbol', 'add_my_currency_symbol', 10, 2);
             add_action('woocommerce_email_before_order_table', array($this, 'email_instructions'), 10, 2);
         }
-        $this->turtlecoin_daemon = new Turtlecoin_Library($this->host, $this->port);
+        
+        $this->turtlecoin_daemon = new Turtlecoin_Library($this->host, $this->port, $this->password);
     }
 
     public function init_form_fields() {
@@ -70,7 +72,6 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
                 'type' => 'textarea',
                 'desc_tip' => __('Payment description the customer will see during the checkout process.', 'turtlecoin_gateway'),
                 'default' => __('Pay securely using TRTL.', 'turtlecoin_gateway')
-
             ),
             'turtlecoin_address' => array(
                 'title' => __('TRTL Address', 'turtlecoin_gateway'),
@@ -89,6 +90,12 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
                 'type' => 'text',
                 'desc_tip' => __('This is the Daemon Host/IP to authorize the payment with port', 'turtlecoin_gateway'),
                 'default' => '18080',
+            ),
+            'daemon_password' => array(
+                'title' => __('TRTL Wallet Password', 'turtlecoin_gateway'),
+                'type' => 'password',
+                'desc_tip' => __('Enter the wallets RCP password.', 'turtlecoin_gateway'),
+                'default' => '',
             ),
             'discount' => array(
                 'title' => __('% discount for using TRTL', 'turtlecoin_gateway'),
@@ -132,7 +139,6 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
 
     public function admin_options() {
         $this->log->add('turtlecoin_gateway', '[SUCCESS] Turtlecoin Settings OK');
-
         echo "<h1>Turtlecoin Payment Gateway</h1>";
         echo "<p>Welcome to Turtlecoin Extension for WooCommerce. Getting started: Make a connection with a wallet daemon!";
         echo "<div style='border:1px solid #DDD;padding:5px 10px;font-weight:bold;color:#223079;background-color:#9ddff3;'>";
@@ -150,7 +156,8 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
             $this->log->add('turtlecoin_gateway', '[ERROR] Can not connect to RCP host');
             echo "</br>Your balance is: Not Avaliable </br>";
             echo "Unlocked balance: Not Avaliable";
-        } else {
+        }
+        else {
             $real_wallet_amount = $wallet_amount['availableBalance'] / 100;
             $real_amount_rounded = round($real_wallet_amount, 2);
 
@@ -185,9 +192,10 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
 
     public function check_turtlecoin() {
         $turtlecoin_address = $this->settings['turtlecoin_address'];
-        if (strlen($turtlecoin_address) == 99 && substr($turtlecoin_address, 4)) {
+        if(strlen($turtlecoin_address) == 99 && substr($turtlecoin_address, 4)) {
             return true;
         }
+
         return false;
     }
 
@@ -274,13 +282,13 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
             setcookie('payment_id', $payment_id, time() + 2700);
         }
         else {
-            $payment_id = $this->SanatizeID($_COOKIE['payment_id']);
+            $payment_id = $this->sanatizeID($_COOKIE['payment_id']);
         }
 
         return $payment_id;
     }
 	
-    public function SanatizeID($payment_id) {
+    public function sanatizeID($payment_id) {
         $sanatized_id = preg_replace("/[^a-zA-Z0-9]+/", "", $payment_id);
     	return $sanatized_id;
     }
@@ -295,7 +303,8 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
         if($rows_num[0]->count) {
             $stored_amount = $wpdb->get_results("SELECT lasthash, amount, paid FROM $table WHERE pid = '$payment_id'");
             $rounded_amount = $stored_amount[0]->amount;
-        } else {
+        }
+        else {
             $TRTL_live_price = $this->fetchPrice($currency);
             $new_amount = $amount / $TRTL_live_price;
             
@@ -306,7 +315,8 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
                 $discount = $new_amount * $discount_decimal;
                 $final_amount = $new_amount - $discount;
                 $rounded_amount = round($final_amount, 2);
-            } else {
+            }
+            else {
                 $rounded_amount = round($new_amount, 2);
             }
             
@@ -353,7 +363,8 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
         //Delete or Updates payment ID details.
         if(isset($this->delete_history)) {
             $wpdb->query("DELETE FROM $table WHERE pid ='$payment_id'");
-        } else {
+        }
+        else {
             $wpdb->query("UPDATE $table SET paid = '1' WHERE pid = '$payment_id'");
         }
 
@@ -364,7 +375,7 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
     public function verifyPayment($payment_id, $amount, $order_id) {
 
         $order = wc_get_order($order_id);   
-        $message = "We are waiting for your payment to be confirmed";
+        $message = "We are waiting for your payment to be confirmed.";
         
         global $wpdb;
         //$wpdb->show_errors();
@@ -378,7 +389,6 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
 
         //Check if order has been paid already        
         if($order->status == "completed") {
-
             echo "PAID";
             $message = $this->onVerified($payment_id, $tAmount, $order_id);
         }

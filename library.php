@@ -9,13 +9,14 @@
  * Reality is the concensus constructed between your neurons.
  */
 class Turtlecoin_Library {
-    protected $url = null, $is_debug = false, $parameters_structure = 'array';
+    protected $url = null, $is_debug = true, $parameters_structure = 'array';
     protected $curl_options = array(
         CURLOPT_CONNECTTIMEOUT => 8,
         CURLOPT_TIMEOUT => 8
     );
     protected $host;
     protected $port;
+    protected $pass;
 
     private $httpErrors = array(
         400 => '400 Bad Request',
@@ -30,11 +31,12 @@ class Turtlecoin_Library {
         503 => '503 Service Unavailable'
     );
 
-    public function __construct($pHost, $pPort) {
+    public function __construct($pHost, $pPort, $pPassword) {
         $this->validate(false === extension_loaded('curl'), 'The curl extension must be loaded to use this class!');
         $this->validate(false === extension_loaded('json'), 'The json extension must be loaded to use this class!');
         $this->host = $pHost;
         $this->port = $pPort;
+        $this->password = $pPassword;
         $this->url = $pHost . ':' . $pPort . '/json_rpc';
     }
 
@@ -59,26 +61,27 @@ class Turtlecoin_Library {
     }
 
     public function _run($method, $params) {
-        $result = $this->request($method, $params);
+
+        $result = $this->request($method, $params, $this->password);
         return $result;
     }
 
-    private function request($pMethod, $pParams) {
+    private function request($pMethod, $pParams, $pPassword) {
         static $requestId = 0;
         $requestId++;
         if(!$pParams) { $pParams = json_decode('{}'); }
 
-        $request = json_encode(array('jsonrpc' => '2.0', 'method' => $pMethod, 'params' => $pParams, 'id' => $requestId));
+        $request = json_encode(array('jsonrpc' => '2.0', 'method' => $pMethod, 'params' => $pParams, 'id' => $requestId, 'password' => $pPassword));
         $responseMessage = $this->getResponse($request);
 
         //If debug is enabled
-        $this->debug('Url: ' . $this->url . "\r\n", false);
+        $this->debug($this->pass + 'Url: ' . $this->url . "\r\n", false);
         $this->debug('Request: <br> <br> ' . $request . "\r\n", false);
         $this->debug(' <br>Response: <br> <br> ' . $responseMessage . "\r\n", true);
 
         $responseDecoded = json_decode($responseMessage, true);
 	
-	//Validate reponse
+	    //Validate reponse
         $this->validate(empty($responseDecoded['id']), 'Invalid response data structure: ' . $responseMessage);
         $this->validate($responseDecoded['id'] != $requestId, 'Request id: ' . $requestId . ' is different from Response id: ' . $responseDecoded['id']);
 
