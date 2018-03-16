@@ -241,7 +241,7 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
                         <div class='content-TRTL-payment'>
                             <div class='TRTL-amount-send'>
                                 <span class='TRTL-label' style='font-weight:bold;'>Amount:</span>
-                                <img src='".plugins_url() . "/turtlecoin-woocommerce-gateway/assets/turtlecoin_icon.png' />" . $price . "
+                                <img src='".plugins_url() . "/woo-turtle/assets/turtlecoin_icon.png' />" . $price . "
                             </div>
                             <br>
                             <div class='TRTL-address'>
@@ -255,7 +255,7 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
                             </div>
                             <br>
                             <div class='TRTL-verification-message' style='width:60%;float:left;text-align:center;'>
-                                <img src=".plugins_url() . "/turtlecoin-woocommerce-gateway/assets/".$icon."' />
+                                <img src=".plugins_url() . "/woo-turtle/assets/".$icon."' />
                                 <h4><font color=$color>" . $message . "</font></h4>                    
                             </div>
                             <div class='TRTL-qr-code' style='width:40%;float:left;text-align:center;'>
@@ -275,7 +275,6 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
         echo "<script type='text/javascript'>setTimeout(function () { location.reload(true); }, $this->reloadTime);</script>";
       }
   
-
     private function setPaymentCookie() {
         if (!isset($_COOKIE['payment_id'])) {
             $payment_id = bin2hex(random_bytes(32));
