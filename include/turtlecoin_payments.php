@@ -319,30 +319,23 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
     }
 
     public function fetchPrice($currency) {
-        $TRTL_price = file_get_contents('https://tradeogre.com/api/v1/ticker/btc-trtl');
-        $BTC_price = file_get_contents('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,EUR,CAD,INR,GBP');
-       
-        $price = json_decode($TRTL_price, TRUE);
-        $bprice = json_decode($BTC_price, TRUE);
-
-        if (!isset($price)) {
-            $this->log->add('Turtlecoin_Gateway', '[ERROR] Unable to get the price of Turtlecoin');
+        if ($currency == 'TRTL') {
+            $price = '1';
+            return $price;
         }
-
-        switch ($currency) {
-            case 'USD':
-                return $price['price']*$bprice['USD'];
-            case 'EUR':
-                return $price['price']*$bprice['EUR'];
-            case 'CAD':
-                return $price['price']*$bprice['CAD'];
-            case 'GBP':
-               return $price['price']*$bprice['GBP'];
-            case 'INR':
-                return $price['price']*$bprice['INR'];
-            case 'TRTL':
-                $price = '1';
-                return $price;
+        else {
+            $TRTL_price = file_get_contents('https://tradeogre.com/api/v1/ticker/btc-trtl');
+            $BTC_price = file_get_contents('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=' . $currency);
+       
+            $price = json_decode($TRTL_price, TRUE);
+            $bprice = json_decode($BTC_price, TRUE);
+            if (!isset($price)) {
+                $this->log->add('Turtlecoin_Gateway', '[ERROR] Unable to get the price of Turtlecoin');
+            }
+            if (!isset($bprice)) {
+                $this->log->add('Turtlecoin_Gateway', '[ERROR] Unable to get the price of local currency');
+            }
+            return $price['price']*$bprice[$currency];
         }
     }
     
