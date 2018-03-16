@@ -1,7 +1,7 @@
 # TurtleCoin WooCommerce Extension
 **Tags:** turtlecoin, woocommerce, integration, payment, merchant, cryptocurrency, accept turtlecoin, turtlecoin woocommerce
 
-**Requires**: WordPress 4.x.x, WooCOmmerce 3.x.x
+**Requires**: WordPress 4.x.x, WooCommerce 3.x.x
 
 **Tested**: WordPress 4.9.4, WooCommerce 3.3.3
 
@@ -70,6 +70,9 @@ Once you've installed and activated WooCommerce, you may install and activate th
 TRTLuzAzNs1E1RBFhteX56A5353vyHuSJ5AYYQfoN97PNbcMDvwQo4pUWHs7SYpuD9ThvA7AD3r742kwTmWh5o9WFaB9JXH8evP
 ```
 - bwentzloff
+```
+TRTLv1gUu7JWTR7ACvbsawMmuPcFibhb4jYaHXfVLq61SaQGz4dZZVSUGqtoZqfPXxEjnCSYHki89Vzgx2GK3hoda3Dy1hpy82K
+```
 - derp-derp-derp
 ```
 TRTLv3m5HxMBpoJDyNFwYB7P9L4hE5ve7NshZio2GuFqRn6SDFMcZX5QPEwexAib45YV6gFrnEpkABPT8nAdGoqD16Xtv8e2xx7
