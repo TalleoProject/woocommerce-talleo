@@ -9,7 +9,7 @@
  * Reality is the concensus constructed between your neurons.
  */
 class Turtlecoin_Library {
-    protected $url = null, $is_debug = true, $parameters_structure = 'array';
+    protected $url = null, $is_debug = false, $parameters_structure = 'array';
     protected $curl_options = array(
         CURLOPT_CONNECTTIMEOUT => 8,
         CURLOPT_TIMEOUT => 8
@@ -54,7 +54,8 @@ class Turtlecoin_Library {
     public function setCurlOptions($pOptionsArray) {
         if (is_array($pOptionsArray)) {
             $this->curl_options = $pOptionsArray + $this->curl_options;
-        } else {
+        }
+        else {
             echo 'Invalid options type.';
         }
         return $this;

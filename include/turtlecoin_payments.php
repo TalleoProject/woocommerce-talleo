@@ -100,8 +100,8 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
             'discount' => array(
                 'title' => __('% discount for using TRTL', 'turtlecoin_gateway'),
 
-                'desc_tip' => __('Provide a discount to your customers for making a private payment with TRTL!', 'turtlecoin_gateway'),
-                'description' => __('Do you want to spread the word about Turtlecoin? Offer a small discount! Leave this empty if you do not wish to provide a discount', 'turtlecoin_gateway'),
+                'desc_tip' => __('Provide a discount to your customers who pay with TRTL!', 'turtlecoin_gateway'),
+                'description' => __('Do you want to spread the word about Turtlecoin? Offer a small discount! Leave this empty if you do not wish to provide a discount.', 'turtlecoin_gateway'),
                 'type' => __('text'),
                 'default' => '5'
 
@@ -110,7 +110,7 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
                 'title' => __('Delete Payment History ', 'turtlecoin_gateway'),
                 'label' => __('Delete payment ID history.', 'turtlecoin_gateway'),
                 'type' => 'checkbox',
-                'description' => __('During the verification process, the payment ID is stored in the database. Check this to delete the ID after payment.', 'turtlecoin_gateway'),
+                'description' => __('During the verification process, the payment ID is stored in the database. Check this to delete the record of the payment after the payment is finalized. (This will not delete the woocommerce record, only the PID record)', 'turtlecoin_gateway'),
                 'default' => 'no'
             ),
             'onion_service' => array(
