@@ -255,7 +255,7 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
                             </div>
                             <br>
                             <div class='TRTL-verification-message' style='width:60%;float:left;text-align:center;'>
-                                <img src=".plugins_url() . "/woo-turtle/assets/".$icon."' />
+                                <img src=".plugins_url() . "/woo-turtle/assets/".$icon." />
                                 <h4><font color=$color>" . $message . "</font></h4>                    
                             </div>
                             <div class='TRTL-qr-code' style='width:40%;float:left;text-align:center;'>
