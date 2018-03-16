@@ -74,27 +74,27 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
                 'default' => __('Pay securely using TRTL.', 'turtlecoin_gateway')
             ),
             'turtlecoin_address' => array(
-                'title' => __('TRTL Address', 'turtlecoin_gateway'),
-                'label' => __('Useful for people that have not a daemon online'),
+                'title' => __('Address', 'turtlecoin_gateway'),
+                'label' => __('Enter the TRTL address that will receive customer payments.'),
                 'type' => 'text',
                 'desc_tip' => __('turtlecoin Wallet Address', 'turtlecoin_gateway')
             ),
             'daemon_host' => array(
-                'title' => __('TRTL Wallet Host', 'turtlecoin_gateway'),
+                'title' => __('Wallet Daemon Host', 'turtlecoin_gateway'),
                 'type' => 'text',
-                'desc_tip' => __('This is the Daemon Host/IP to authorize the payment with port', 'turtlecoin_gateway'),
+                'desc_tip' => __('Enter your walletd daemon hostname or IP address.', 'turtlecoin_gateway'),
                 'default' => 'localhost',
             ),
             'daemon_port' => array(
                 'title' => __('TRTL Wallet Port', 'turtlecoin_gateway'),
                 'type' => 'text',
-                'desc_tip' => __('This is the Daemon Host/IP to authorize the payment with port', 'turtlecoin_gateway'),
+                'desc_tip' => __('Enter the port your walletd daemon is running on.', 'turtlecoin_gateway'),
                 'default' => '18080',
             ),
             'daemon_password' => array(
                 'title' => __('TRTL Wallet Password', 'turtlecoin_gateway'),
                 'type' => 'password',
-                'desc_tip' => __('Enter the wallets RCP password.', 'turtlecoin_gateway'),
+                'desc_tip' => __('Enter your walletd daemon RCP password.', 'turtlecoin_gateway'),
                 'default' => '',
             ),
             'discount' => array(
