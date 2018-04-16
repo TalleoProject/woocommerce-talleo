@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Turtlecoin - WooCommerce Gateway
+Plugin Name: TurtleCoin - WooCommerce Gateway
 Plugin URI: http://turtlecoin.lol
-Description: Extends WooCommerce by adding the Turtlecoin Gateway
+Description: Extends WooCommerce by adding the TurtleCoin Gateway
 Version: 0.2
 Author: Fexra
 */
