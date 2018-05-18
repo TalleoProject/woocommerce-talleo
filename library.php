@@ -93,6 +93,10 @@ class Turtlecoin_Library {
                 $errorMessage .= "\n" . 'Error data: ' . $responseDecoded['error']['data'];
             }
 
+          $this->debug($errorMessage."\r\n", false);
+
+          $errorMessage = "There has been an error processing your request, please try again later.".
+          
             $this->validate(!is_null($responseDecoded['error']), $errorMessage);
         }
        
