@@ -68,9 +68,13 @@ class Turtlecoin_Library {
     }
 
     private function request($pMethod, $pParams, $pPassword) {
+
         static $requestId = 0;
         $requestId++;
-        if(!$pParams) { $pParams = json_decode('{}'); }
+
+        if(!$pParams) {
+            $pParams = json_decode('{}');
+        }
 
         $request = json_encode(array('jsonrpc' => '2.0', 'method' => $pMethod, 'params' => $pParams, 'id' => $requestId, 'password' => $pPassword));
         $responseMessage = $this->getResponse($request);
@@ -95,7 +99,7 @@ class Turtlecoin_Library {
 
           $this->debug($errorMessage."\r\n", false);
 
-          $errorMessage = "There has been an error processing your request, please try again later.".
+          $errorMessage = "There has been an error processing your request, please contact the site administration.".
           
             $this->validate(!is_null($responseDecoded['error']), $errorMessage);
         }
@@ -113,6 +117,7 @@ class Turtlecoin_Library {
         $debug .= $pAdd;
 
         $startTime = empty($startTime) ? array_sum(explode(' ', microtime())) : $startTime;
+        
         if (true === $pShow and !empty($debug)) {
 
             $endTime = array_sum(explode(' ', microtime()));
@@ -146,7 +151,7 @@ class Turtlecoin_Library {
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
         if (isset($this->httpErrors[$httpCode])) {
-            echo 'Response Http Error - ' . $this->httpErrors[$httpCode];
+            echo 'Response HTTP Error - ' . $this->httpErrors[$httpCode];
         }
 
         if (0 < curl_errno($ch)) {
@@ -168,11 +173,11 @@ class Turtlecoin_Library {
 
     public function getStatus() {
         $status = $this->_run('getStatus', null);
-        return $status['lastBlockHash'];
+        return $status;
     }
 
-    public function getPayments($lastBlockHash, $paymentId) {
-        $payment_param = array('blockCount' => 100, 'blockHash' => $lastBlockHash, 'paymentId' => $paymentId);
+    public function getPayment($lastBlockHash, $paymentId) {
+        $payment_param = array('blockCount' => 3, 'blockHash' => $lastBlockHash, 'paymentId' => $paymentId);
         $get_payments = $this->_run('getTransactions', $payment_param);
         return $get_payments;
     }

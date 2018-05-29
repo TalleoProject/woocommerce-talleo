@@ -30,7 +30,8 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
         $this->host = $this->get_option('daemon_host');
         $this->port = $this->get_option('daemon_port');
         $this->password = $this->get_option('daemon_password');
-        $this->address = $this->get_option('turtlecoin_address');
+        $this->address = $this->get_option('address');
+        $this->confirms = $this->get_option('confirms');
         $this->discount = $this->get_option('discount');
         $this->delete_history = $this->get_option('history');        
         $this->init_settings();
@@ -73,13 +74,13 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
                 'description' => __('Payment description the customer will see during the checkout process.', 'turtlecoin_gateway'),
                 'default' => __('Pay securely using TRTL.', 'turtlecoin_gateway')
             ),
-            'turtlecoin_address' => array(
+            'address' => array(
                 'title' => __('Address', 'turtlecoin_gateway'),
                 'description' => __('Enter the TRTL address that will receive customer payments.'),
                 'type' => 'text',
                 'default' => 'TRTL'
             ),
-            'turtlecoin_confirms' => array(
+            'confirms' => array(
                 'title' => __('Confirmations', 'turtlecoin_gateway'),
                 'description' => __('Enter the amount of confirmations (blocks) that are needed for the order to be approved. (leave empty if manual approval needed)'),
                 'type' => 'text',
@@ -306,7 +307,7 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
 
         //Check for matching paymentID (order vs cookie)
         if($rows_num[0]->count) {
-            $stored_amount = $wpdb->get_results("SELECT lasthash, amount, paid FROM $table WHERE pid = '$payment_id'");
+            $stored_amount = $wpdb->get_results("SELECT hash, amount, paid FROM $table WHERE pid = '$payment_id'");
             $rounded_amount = $stored_amount[0]->amount;
         }
         else {
@@ -325,9 +326,10 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
                 $rounded_amount = round($new_amount, 2);
             }
             
-            $lastHash = $this->turtlecoin_daemon->getStatus();
+            $status = $this->turtlecoin_daemon->getStatus();
+            $hash = $status['lastBlockHash'];
             
-            $wpdb->query("INSERT INTO $table(oid, pid, lasthash, amount, conversion, paid) VALUES($order_id, '$payment_id', '$lastHash', $rounded_amount, $TRTL_live_price, '0')");
+            $wpdb->query("INSERT INTO $table(oid, pid, hash, amount, conversion, paid) VALUES($order_id, '$payment_id', '$hash', $rounded_amount, $TRTL_live_price, '0')");
         }
 
         return $rounded_amount;
@@ -363,7 +365,7 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
         $this->confirmed = true;
 
         $order = wc_get_order($order_id);
-        $order->update_status('completed', __('Payment has been received', 'turtlecoin_gateway'));
+        $order->update_status('completed', __('Payment has been received. Your order will be processed after ' + $this->confirms + ' confirmations', 'turtlecoin_gateway'));
 
         global $wpdb;
         $table = $wpdb->prefix . 'woocommerce_turtlecoin';   
@@ -388,7 +390,7 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
         global $wpdb;
         //$wpdb->show_errors();
         $table = $wpdb->prefix . 'woocommerce_turtlecoin';
-        $result = $wpdb->get_results("SELECT lasthash, paid FROM $table WHERE pid = '$payment_id'");
+        $result = $wpdb->get_results("SELECT hash, paid FROM $table WHERE pid = '$payment_id'");
 
         //Check if already paid
         if($result[0]->paid == 1) {
@@ -401,8 +403,8 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
             $message = $this->onVerified($payment_id, $tAmount, $order_id);
         }
                     
-        $lastBlockHash = $result[0]->lasthash;
-        $get_payments_method = $this->turtlecoin_daemon->getPayments($lastBlockHash, $payment_id);
+        $lastBlockHash = $result[0]->hash;
+        $get_payments_method = $this->turtlecoin_daemon->getPayment($lastBlockHash, $payment_id);
         
         $tAmount = $amount*100;
         $vAmount = 0;

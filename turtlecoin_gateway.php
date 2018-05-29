@@ -62,7 +62,7 @@ function createDatabase() {
        `id` INT(32) NOT NULL AUTO_INCREMENT,
 	   `oid` INT(32) NOT NULL,
        `pid` VARCHAR(64) NOT NULL,
-       `lasthash` VARCHAR(120) NOT NULL,
+       `hash` VARCHAR(120) NOT NULL,
        `amount` DECIMAL(12, 2) NOT NULL,
 	   `conversion` DECIMAL(12,2) NOT NULL,
        `paid` INT(1) NOT NULL,
