@@ -64,50 +64,50 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
             'title' => array(
                 'title' => __('Title', 'turtlecoin_gateway'),
                 'type' => 'text',
-                'desc_tip' => __('Payment title the customer will see during the checkout process.', 'turtlecoin_gateway'),
+                'description' => __('Payment title the customer will see during the checkout process.', 'turtlecoin_gateway'),
                 'default' => __('Turtlecoin (TRTL)', 'turtlecoin_gateway')
             ),
             'description' => array(
                 'title' => __('Description', 'turtlecoin_gateway'),
                 'type' => 'textarea',
-                'desc_tip' => __('Payment description the customer will see during the checkout process.', 'turtlecoin_gateway'),
+                'description' => __('Payment description the customer will see during the checkout process.', 'turtlecoin_gateway'),
                 'default' => __('Pay securely using TRTL.', 'turtlecoin_gateway')
             ),
             'turtlecoin_address' => array(
                 'title' => __('Address', 'turtlecoin_gateway'),
-                'label' => __('Enter the TRTL address that will receive customer payments.'),
+                'description' => __('Enter the TRTL address that will receive customer payments.'),
                 'type' => 'text',
-                'desc_tip' => __('turtlecoin Wallet Address', 'turtlecoin_gateway')
+                'default' => 'TRTL'
             ),
             'turtlecoin_confirms' => array(
-                'title' => __('Address', 'turtlecoin_gateway'),
-                'label' => __('Enter the amount of confirmations (blocks) that are needed for the order to be approved. (leave empty if manual approval needed)'),
+                'title' => __('Confirmations', 'turtlecoin_gateway'),
+                'description' => __('Enter the amount of confirmations (blocks) that are needed for the order to be approved. (leave empty if manual approval needed)'),
                 'type' => 'text',
-                'desc_tip' => __('turtlecoin Wallet Address', 'turtlecoin_gateway')
+                'default' => '20'
+
             ),
             'daemon_host' => array(
-                'title' => __('Wallet Daemon Host', 'turtlecoin_gateway'),
+                'title' => __('Walletd RCP API Host', 'turtlecoin_gateway'),
+                'desc_tip' => __('Walletd daemon hostname or IP address.', 'turtlecoin_gateway'),
                 'type' => 'text',
-                'desc_tip' => __('Enter your walletd daemon hostname or IP address.', 'turtlecoin_gateway'),
+
                 'default' => 'localhost',
             ),
             'daemon_port' => array(
-                'title' => __('TRTL Wallet Port', 'turtlecoin_gateway'),
+                'title' => __('Walletd RCP API Port', 'turtlecoin_gateway'),
+                'desc_tip' => __('Walletd ', 'turtlecoin_gateway'),
                 'type' => 'text',
-                'desc_tip' => __('Enter the port your walletd daemon is running on.', 'turtlecoin_gateway'),
-                'default' => '18080',
+                'default' => '8080',
             ),
             'daemon_password' => array(
-                'title' => __('TRTL Wallet Password', 'turtlecoin_gateway'),
-                'type' => 'password',
+                'title' => __('Walletd RCP API Password', 'turtlecoin_gateway'),
                 'desc_tip' => __('Enter your walletd daemon RCP password.', 'turtlecoin_gateway'),
+                'type' => 'password',
                 'default' => '',
             ),
             'discount' => array(
                 'title' => __('% discount for using TRTL', 'turtlecoin_gateway'),
-
-                'desc_tip' => __('Provide a discount to your customers who pay with TRTL!', 'turtlecoin_gateway'),
-                'description' => __('Do you want to spread the word about Turtlecoin? Offer a small discount! Leave this empty if you do not wish to provide a discount.', 'turtlecoin_gateway'),
+                'description' => __('Provide a discount to your customers who pay with TRTL! Leave this empty if you do not wish to provide a discount.', 'turtlecoin_gateway'),
                 'type' => __('text'),
                 'default' => '5'
 
