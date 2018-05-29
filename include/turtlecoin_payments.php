@@ -384,7 +384,7 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
     
     public function verifyPayment($payment_id, $amount, $order_id) {
 
-        $order = wc_get_order($order_id);   
+        $order = wc_get_order($order_id);
         $message = "We are waiting for your payment to be confirmed.";
         
         global $wpdb;
