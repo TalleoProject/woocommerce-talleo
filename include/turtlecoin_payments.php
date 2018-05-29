@@ -57,7 +57,7 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
         $this->form_fields = array(
             'enabled' => array(
                 'title' => __('Enable / Disable', 'turtlecoin_gateway'),
-                'label' => __('Enable this payment gateway', 'turtlecoin_gateway'),
+                'label' => __('Enable this TRTL payment gateway. Requires Walletd RCP API access.', 'turtlecoin_gateway'),
                 'type' => 'checkbox',
                 'default' => 'no'
             ),
@@ -325,9 +325,9 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
                 $rounded_amount = round($new_amount, 2);
             }
             
-            //$wpdb->show_errors();
             $lastHash = $this->turtlecoin_daemon->getStatus();
-            $wpdb->query("INSERT INTO $table(oid, pid, lasthash, amount, paid) VALUES($order_id, '$payment_id', '$lastHash', $rounded_amount, '0')");
+            
+            $wpdb->query("INSERT INTO $table(oid, pid, lasthash, amount, conversion, paid) VALUES($order_id, '$payment_id', '$lastHash', $rounded_amount, $TRTL_live_price, '0')");
         }
 
         return $rounded_amount;
@@ -344,12 +344,15 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
        
             $price = json_decode($TRTL_price, TRUE);
             $bprice = json_decode($BTC_price, TRUE);
+
             if (!isset($price)) {
-                $this->log->add('Turtlecoin_Gateway', '[ERROR] Unable to get the price of Turtlecoin');
+                $this->log->add('Turtlecoin_Gateway', '[ERROR] Unable to get the price of TRTL.');
             }
+
             if (!isset($bprice)) {
-                $this->log->add('Turtlecoin_Gateway', '[ERROR] Unable to get the price of local currency');
+                $this->log->add('Turtlecoin_Gateway', '[ERROR] Unable to get the price of ' + $currency);
             }
+
             return $price['price']*$bprice[$currency];
         }
     }
