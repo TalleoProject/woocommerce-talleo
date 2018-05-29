@@ -52,12 +52,11 @@ function add_my_currency_symbol($currency_symbol, $currency) {
 
 //Create Database
 register_activation_hook(__FILE__,'createDatabase');
-$db = $wpdb->prefix . 'woocommerce_turtlecoin';
 
 function createDatabase() {
 	global $wpdb;
 	$charset_collate = $wpdb->get_charset_collate();
-    $table_name = $wpdb->prefix . 'woocommerce_turtlecoin';
+    $table_name = $wpdb->prefix . 'woocommerce_wooturtle';
     
 	$sql = "CREATE TABLE $table_name (
        `id` INT(32) NOT NULL AUTO_INCREMENT,
@@ -65,6 +64,7 @@ function createDatabase() {
        `pid` VARCHAR(64) NOT NULL,
        `lasthash` VARCHAR(120) NOT NULL,
        `amount` DECIMAL(12, 2) NOT NULL,
+	   `conversion` DECIMAL(12,2) NOT NULL,
        `paid` INT(1) NOT NULL,
        UNIQUE KEY id (id)
 	) $charset_collate;";
