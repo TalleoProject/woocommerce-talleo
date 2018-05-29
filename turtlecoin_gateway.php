@@ -3,8 +3,8 @@
 Plugin Name: TurtleCoin - WooCommerce Gateway
 Plugin URI: http://turtlecoin.lol
 Description: Extends WooCommerce by adding the TurtleCoin Gateway
-Version: 0.2
-Author: Fexra
+Version: 0.3
+Author: fexra
 */
 if(!defined('ABSPATH')) {
 	exit;
@@ -70,5 +70,5 @@ function createDatabase() {
 	) $charset_collate;";
 
 	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-	dbDelta( $sql );
+	dbDelta($sql);
 }

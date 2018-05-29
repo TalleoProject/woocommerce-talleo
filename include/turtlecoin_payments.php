@@ -79,6 +79,12 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
                 'type' => 'text',
                 'desc_tip' => __('turtlecoin Wallet Address', 'turtlecoin_gateway')
             ),
+            'turtlecoin_confirms' => array(
+                'title' => __('Address', 'turtlecoin_gateway'),
+                'label' => __('Enter the amount of confirmations (blocks) that are needed for the order to be approved. (leave empty if manual approval needed)'),
+                'type' => 'text',
+                'desc_tip' => __('turtlecoin Wallet Address', 'turtlecoin_gateway')
+            ),
             'daemon_host' => array(
                 'title' => __('Wallet Daemon Host', 'turtlecoin_gateway'),
                 'type' => 'text',
@@ -110,7 +116,7 @@ class Turtlecoin_Gateway extends WC_Payment_Gateway {
                 'title' => __('Delete Payment History ', 'turtlecoin_gateway'),
                 'label' => __('Delete payment ID history.', 'turtlecoin_gateway'),
                 'type' => 'checkbox',
-                'description' => __('During the verification process, the payment ID is stored in the database. Check this to delete the record of the payment after the payment is finalized. (This will not delete the woocommerce record, only the PID record)', 'turtlecoin_gateway'),
+                'description' => __('During the verification process, the transaction is stored in the database, including the pid, hash, amount and conversion. Check this to delete the record of the payment after the payment is finalized. (This will not delete the woocommerce order record)', 'turtlecoin_gateway'),
                 'default' => 'no'
             ),
             'onion_service' => array(
