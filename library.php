@@ -2,13 +2,13 @@
 /**
  * library.php
  *
- * @author Fexra <fexra@protonmail.com>
+ * @author mtl1979 <monni1995@gmail.com>
  * 
- * Donate TRTLuzAzNs1E1RBFhteX56A5353vyHuSJ5AYYQfoN97PNbcMDvwQo4pUWHs7SYpuD9ThvA7AD3r742kwTmWh5o9WFaB9JXH8evP
+ * Donate P6ZDs32zWmAgoXE6Caom2L7nNaKRtNjqvFsv6NQp8XzUZsB47V8XRPCG7dzLf59KPMXhyjLpPbSqyWaYpaDNwV121EFsG4Btr
  * 
  * Reality is the concensus constructed between your neurons.
  */
-class Turtlecoin_Library {
+class Pinkstarcoin_Library {
     protected $url = null, $is_debug = false, $parameters_structure = 'array';
     protected $curl_options = array(
         CURLOPT_CONNECTTIMEOUT => 8,
@@ -86,20 +86,20 @@ class Turtlecoin_Library {
 
         $responseDecoded = json_decode($responseMessage, true);
 	
-	    //Validate reponse
+	//Validate response
         $this->validate(empty($responseDecoded['id']), 'Invalid response data structure: ' . $responseMessage);
         $this->validate($responseDecoded['id'] != $requestId, 'Request id: ' . $requestId . ' is different from Response id: ' . $responseDecoded['id']);
 
         if(isset($responseDecoded['error'])) {
-            $errorMessage = 'Request have return error: ' . $responseDecoded['error']['message'] . '; ' . "\n" . 'Request: ' . $request . '; ';
+            $errorMessage = 'Request have returned error: ' . $responseDecoded['error']['message'] . '; ' . "\n" . 'Request: ' . $request . '; ';
 
-          if (isset($responseDecoded['error']['data'])) {
+            if (isset($responseDecoded['error']['data'])) {
                 $errorMessage .= "\n" . 'Error data: ' . $responseDecoded['error']['data'];
             }
 
-          $this->debug($errorMessage."\r\n", false);
+            $this->debug($errorMessage."\r\n", false);
 
-          $errorMessage = "There has been an error processing your request, please contact the site administration.".
+            $errorMessage = "There has been an error processing your request, please contact the site administration.".
           
             $this->validate(!is_null($responseDecoded['error']), $errorMessage);
         }
@@ -155,7 +155,7 @@ class Turtlecoin_Library {
         }
 
         if (0 < curl_errno($ch)) {
-           echo '[ERROR] Failed to connect to turtlecoin-wallet-rpc at ' . $this->host . ' port '. $this->port .'</br>';
+           echo '[ERROR] Failed to connect to walletd at ' . $this->host . ' port '. $this->port .'</br>';
         }
 
         curl_close($ch);
