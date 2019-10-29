@@ -1,5 +1,5 @@
-# PinkstarcoinV2 WooCommerce Extension
-**Tags:** pinkstarcoinv2, woocommerce, integration, payment, merchant, cryptocurrency, accept pinkstarcoinv2, pinkstarcoinv2 woocommerce
+# Talleo WooCommerce Extension
+**Tags:** talleo, woocommerce, integration, payment, merchant, cryptocurrency, accept talleo, talleo woocommerce
 
 **Requires**: WordPress 4.x.x, WooCommerce 3.x.x
 
@@ -9,26 +9,26 @@
 
 **License URI**: http://www.gnu.org/licenses/gpl-3.0.html
  
-PinkstarcoinV2 WooCommerce Extension is a WordPress plugin that allows merchants to accept PSTAR as payments at WooCommerce-powered online stores.
+Talleo WooCommerce Extension is a WordPress plugin that allows merchants to accept TLO as payments at WooCommerce-powered online stores.
 
 ## Description
 
 Your online store must use the WooCommerce platform (a free WordPress plugin).
-Once you've installed and activated WooCommerce, you may install and activate the PinkstarcoinV2 WooCommerce Extension.
+Once you've installed and activated WooCommerce, you may install and activate the Talleo WooCommerce Extension.
 
 **Benefits**
 
-* Accept payments directly into your personal PinkstarcoinV2 wallet.
-* Accept payment in PinkstarcoinV2 for physical and digital downloadable products.
-* Add a PinkstarcoinV2 payments option to your existing online store with alternative main currency.
-* Automatic conversion to PinkstarcoinV2 via realtime exchange rate feed and calculation.
+* Accept payments directly into your personal Talleo wallet.
+* Accept payment in Talleo for physical and digital downloadable products.
+* Add a Talleo payments option to your existing online store with alternative main currency.
+* Automatic conversion to Talleo via realtime exchange rate feed and calculation.
 
 ## Dependencies
 
 - WordPress. This can be downloaded from [wordpress.org](https://wordpress.org) or cloning their [GitHub repository](https://github.com/WordPress/WordPress)
 - WooCommerce. This can be downloaded from [wordpress.org](https://wordpress.org/plugins/woocommerce/) or cloning their [GitHub repository](https://github.com/woocommerce/woocommerce)
 - A webserver with the latest versions of PHP and MySQL.
-- A running walletd daemon that is accessible by the webserver. This can be downloaded from the [PinkstarcoinV2 repository](https://github.com/Jachi84/PinkstarcoinV2).
+- A running walletd daemon that is accessible by the webserver. This can be downloaded from the [TalleoProject repository](https://github.com/TalleoProject/Talleo).
 
 
 ## Installation
@@ -58,5 +58,5 @@ Once you've installed and activated WooCommerce, you may install and activate th
 
 - mtl1979
 ```
-P6ZDs32zWmAgoXE6Caom2L7nNaKRtNjqvFsv6NQp8XzUZsB47V8XRPCG7dzLf59KPMXhyjLpPbSqyWaYpaDNwV121EFsG4Btr
+TA4yACzMYuFYq7V6xVAWYHeS39jQ8w4mKRowpY6NskGuS1rZpjcWuCpdeCypwUCJrK9mGqVW9o1pY2EG3HW7BZkR2YRcc4YNa
 ```

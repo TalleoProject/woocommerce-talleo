@@ -3,12 +3,12 @@
  * library.php
  *
  * @author mtl1979 <monni1995@gmail.com>
- * 
- * Donate P6ZDs32zWmAgoXE6Caom2L7nNaKRtNjqvFsv6NQp8XzUZsB47V8XRPCG7dzLf59KPMXhyjLpPbSqyWaYpaDNwV121EFsG4Btr
- * 
+ *
+ * TA4yACzMYuFYq7V6xVAWYHeS39jQ8w4mKRowpY6NskGuS1rZpjcWuCpdeCypwUCJrK9mGqVW9o1pY2EG3HW7BZkR2YRcc4YNa
+ *
  * Reality is the concensus constructed between your neurons.
  */
-class Pinkstarcoin_Library {
+class Talleo_Library {
     protected $url = null, $is_debug = false, $parameters_structure = 'array';
     protected $curl_options = array(
         CURLOPT_CONNECTTIMEOUT => 8,
@@ -85,7 +85,7 @@ class Pinkstarcoin_Library {
         $this->debug(' <br>Response: <br> <br> ' . $responseMessage . "\r\n", true);
 
         $responseDecoded = json_decode($responseMessage, true);
-	
+
 	//Validate response
         $this->validate(empty($responseDecoded['id']), 'Invalid response data structure: ' . $responseMessage);
         $this->validate($responseDecoded['id'] != $requestId, 'Request id: ' . $requestId . ' is different from Response id: ' . $responseDecoded['id']);
@@ -100,16 +100,16 @@ class Pinkstarcoin_Library {
             $this->debug($errorMessage."\r\n", false);
 
             $errorMessage = "There has been an error processing your request, please contact the site administration.".
-          
+
             $this->validate(!is_null($responseDecoded['error']), $errorMessage);
         }
-       
+
         return $responseDecoded['result'];
     }
 
     protected function debug($pAdd, $pShow = false) {
         static $debug, $startTime;
- 
+
         if(false === $this->is_debug) {
             return;
         }
@@ -117,7 +117,7 @@ class Pinkstarcoin_Library {
         $debug .= $pAdd;
 
         $startTime = empty($startTime) ? array_sum(explode(' ', microtime())) : $startTime;
-        
+
         if (true === $pShow and !empty($debug)) {
 
             $endTime = array_sum(explode(' ', microtime()));
