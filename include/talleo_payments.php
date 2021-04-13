@@ -227,7 +227,7 @@ class Talleo_Gateway extends WC_Payment_Gateway {
             $icon = "talleo_icon_large.png";
         } else {
             $color = "DC143C";
-            $icon = "loader.gif"
+            $icon = "loader.gif";
         }
 
         if($this->discount) {
