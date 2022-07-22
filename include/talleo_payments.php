@@ -340,7 +340,7 @@ class Talleo_Gateway extends WC_Payment_Gateway {
             return $price;
         }
         else {
-            $TLO_price = file_get_contents('https://c-patex.com:443/api/v2/tickers/tlobtc.json');
+            $TLO_price = file_get_contents('https://cpxclassic.com:443/api/v2/tickers/tlobtc.json');
             $price = json_decode($TLO_price, TRUE);
 
             if (!isset($price) || !isset($price['ticker'])) {
