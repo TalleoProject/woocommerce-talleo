@@ -340,14 +340,14 @@ class Talleo_Gateway extends WC_Payment_Gateway {
             return $price;
         }
         else {
-            $TLO_price = file_get_contents('https://cpxclassic.com:443/api/v2/tickers/tlobtc.json');
+            $TLO_price = file_get_contents('https://cex78.com:443/api/ticker.json/tlo-btc');
             $price = json_decode($TLO_price, TRUE);
 
-            if (!isset($price) || !isset($price['ticker'])) {
+            if (!isset($price) || !isset($price['price']) || !isset($price['price']['last'])) {
                 $this->log->add('Talleo_Gateway', '[ERROR] Unable to get the price of TLO.');
             }
 
-            $price = floatval($price['ticker']['last']);
+            $price = floatval($price['price']['last']);
 
             if ($currency != 'BTC') {
                 $BTC_price = file_get_contents('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=' . $currency);
